@@ -10,6 +10,14 @@ class TaskTests(unittest.TestCase):
         add_task(self.tasks, "  Test the workflow  ")
         self.assertEqual(self.tasks[-1]["title"], "Test the workflow")
 
+    def test_add_task_assigns_next_id(self):
+        add_task(self.tasks, "Review the workflow")
+        self.assertEqual(self.tasks[-1], {
+            "id": 2,
+            "title": "Review the workflow",
+            "done": False,
+        })
+
     def test_blank_task_is_ignored(self):
         add_task(self.tasks, "   ")
         self.assertEqual(len(self.tasks), 1)
